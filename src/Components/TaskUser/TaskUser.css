@@ -1,0 +1,55 @@
+.TaskUser {
+    display: flex;
+    flex-direction: row;
+    line-height: 19px;
+    padding: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    border-radius: 16px;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+}
+
+.TaskUser-Avatar {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 12px;
+    background-color: #407F8C;
+    margin-right: 4px;
+    color: #FFFFFF;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+}
+
+.TaskUser-Name {
+    max-width: 200px;
+    padding-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.TaskUser_type_author {
+    background-color: #EBF0F5;
+}
+
+.TaskUser_type_assignee {
+    background-color: #F2EDE2;
+}
+
+.TaskUser-Type {
+    white-space: nowrap;
+    padding-top: 3px;
+    padding-right: 3px;
+    color: #757575;
+}
+
+.TaskUser-Type:before {
+    content: ' - ';
+    display: inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+}

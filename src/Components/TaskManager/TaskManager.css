@@ -1,0 +1,12 @@
+.TaskManager {
+    display: flex;
+    flex-direction: row;
+}
+
+.TaskManager-List {
+    flex-basis: 80%;
+}
+
+.TaskManager-Filter {
+    flex-basis: 20%;
+}

@@ -1,0 +1,89 @@
+.Task {
+    background: #FFFFFF;
+
+    border: 0.5px solid #F5F5F5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .2);
+    border-radius: 13px;
+
+    padding: 12px 30px;
+}
+
+.Task-Id {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.5px;
+    color: #757575;
+}
+
+.Task-Type {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.5px;
+    color: #757575;
+    margin-right: 4px;
+}
+
+.Task-Type:before {
+    content: '\00B7';
+    display: inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.Task-Badge {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.5px;
+    color: #212121;
+    background: #EBF0F5;
+    border-radius: 3px;
+    padding: 1px 8px;
+}
+
+.Task-Badge_type_discuss {
+    background: #92C486;
+}
+
+.Task-Badge_type_meeting {
+    background: #61A0BF;
+}
+
+.Task-Title {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.03em;
+    margin-top: 3px;
+    font-weight: normal;
+}
+
+.Task-TitleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Task-Info {
+    display: flex;
+    flex-direction: row;
+}
+
+.Task-Author {
+    flex-basis: 332px;
+}
+
+.Task-Assignee {
+    flex-basis: 332px;
+    box-sizing: border-box;
+    padding-left: 32px;
+}
+
+.Task-Status {
+    flex-grow: 2;
+    text-align: right;
+    line-height: 30px;
+    font-size: 15px;
+    padding: 0 16px;
+    white-space: nowrap;
+}
