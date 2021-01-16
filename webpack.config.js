@@ -22,6 +22,13 @@ module.exports = {
                     'style-loader',
                     'css-loader',
                 ]
+            },
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'images/[sha512:hash:base64:7].[ext]',
+                },
             }
         ]
     },

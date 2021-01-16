@@ -1,0 +1,53 @@
+.SubTasks {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    line-height: 24px;
+}
+
+.SubTasks-Label {
+    color: #757575;
+    padding-right: 8px;
+}
+
+.SubTasks-New {
+    font-size: 16px;
+    padding-right: 8px;
+}
+
+.SubTasks-InProgress {
+    font-size: 16px;
+    padding-right: 8px;
+}
+
+.SubTasks-Closed {
+    font-size: 16px;
+}
+
+.SubTasks-Icon:before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    vertical-align: middle;
+    margin-top: -4px;
+}
+
+.SubTasks-Icon_type_list:before {
+    background-image: url("assets/list.svg");
+}
+
+.SubTasks-Icon_type_new:before {
+    background-image: url("assets/clock_full.svg");
+}
+
+.SubTasks-Icon_type_inProgress:before {
+    background-image: url("assets/clock_half.svg");
+}
+
+.SubTasks-Icon_type_closed:before {
+    background-image: url("assets/check.svg");
+}

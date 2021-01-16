@@ -12,7 +12,25 @@ const taskList = [
     assignee: { name: 'Зарембо-Годзяцкий' },
     date: new Date(2020, 8, 1),
     deadline: new Date(2020, 9, 10),
-    status: 'В работе'
+    status: 'В работе',
+    subtasks: [
+      {
+        id: 3434343,
+        status: 'В работе',
+      },
+      {
+        id: 756756756,
+        status: 'Завершена',
+      },
+      {
+        id: 354353,
+        status: 'Новая',
+      },
+      {
+        id: 4354343,
+        status: 'Новая',
+      }
+    ]
   },
   {
     id: 67456456,

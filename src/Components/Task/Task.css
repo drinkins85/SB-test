@@ -1,5 +1,14 @@
 .Task {
-    background: #FFFFFF;
+    border-radius: 13px;
+}
+
+.Task_subtasks {
+    background-color: #E5EEF0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px rgba(0, 0, 0, .12), 0px 1px 3px rgba(0, 0, 0, .2);
+}
+
+.Task-Main {
+    background-color: #FFFFFF;
 
     border: 0.5px solid #F5F5F5;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .2);
@@ -86,4 +95,10 @@
     font-size: 15px;
     padding: 0 16px;
     white-space: nowrap;
+}
+
+.Task-Subtasks {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-bottom: 5px;
 }
