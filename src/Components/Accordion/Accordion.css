@@ -1,0 +1,53 @@
+.Accordion {
+
+}
+
+.Accordion-Title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.5px;
+    color: #212121;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    padding: 4px 0;
+    margin-bottom: 10px;
+}
+
+.Accordion-Title:hover {
+    background-color: #EBF0F5;
+}
+
+.Accordion-Title:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 100%;
+    background-image: url('./assets/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    top: 0;
+    left: auto;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.Accordion_opened .Accordion-Title:after {
+    transform: rotate(0);
+}
+
+.Accordion-Body {
+    padding-bottom: 20px;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: .1s;
+    height: 0;
+}
+
+.Accordion_opened .Accordion-Body {
+    transform: scaleY(1);
+    visibility: visible;
+    height: auto;
+}
+
