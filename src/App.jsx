@@ -41,8 +41,20 @@ const taskList = [
     assignee: { name: 'Зарембо-Годзяцкий' },
     date: new Date(2021, 0, 1),
     deadline: new Date(2021, 2, 2),
-    status: 'В работе'
+    status: 'Новая'
+  },
+  {
+    id: 67456456,
+    type: 'Конференция',
+    title: 'Встреча с инвесторами',
+    description: '',
+    author: { name: 'Иванов Иван' },
+    assignee: { name: 'Петров Петр' },
+    date: new Date(2021, 0, 1),
+    deadline: new Date(2021, 2, 2),
+    status: 'Завершена'
   }
+
 ];
 
 export default function App () {

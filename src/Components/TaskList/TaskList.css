@@ -2,6 +2,43 @@
     padding: 20px;
 }
 
+.TaskList-Items {
+    padding-left: 20px;
+}
+
 .TaskList-Item {
     margin-bottom: 20px;
+}
+
+.TaskList-Header {
+    display: flex;
+    padding: 18px 0;
+    line-height: 24px;
+}
+
+.TaskList-Title {
+    font-size: 20px;
+    color: #212121;
+    flex-basis: 60%;
+}
+
+.TaskList-MainTitle {
+    font-weight: bold;
+}
+
+.TaskList-New {
+    color: #757575;
+    font-size: 16px;
+    flex-basis: 20%;
+    white-space: nowrap;
+}
+
+.TaskList-Failed {
+    color: #757575;
+    font-size: 16px;
+    flex-basis: 20%;
+    box-sizing: border-box;
+    padding-right: 20px;
+    text-align: right;
+    white-space: nowrap;
 }

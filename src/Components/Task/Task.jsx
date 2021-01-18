@@ -12,6 +12,7 @@ export default function Task({ task }) {
         switch (type) {
             case "Совещание отдела": return 'discuss'
             case "Встреча": return 'meeting'
+            case "Конференция": return 'conf'
         }
     }
 
@@ -28,11 +29,13 @@ export default function Task({ task }) {
                    <TaskDate dateStart={date} dateFinish={deadline} />
                 </div>
                 <div className="Task-Info">
-                    <div className="Task-Author">
-                        <TaskUser user={author} type="author" />
-                    </div>
-                    <div className="Task-Assignee">
-                        <TaskUser user={assignee} type="assignee" />
+                    <div className="Task-Users">
+                        <div className="Task-Author">
+                            <TaskUser user={author} type="author" />
+                        </div>
+                        <div className="Task-Assignee">
+                            <TaskUser user={assignee} type="assignee" />
+                        </div>
                     </div>
                     <div className="Task-Status">
                         {status}

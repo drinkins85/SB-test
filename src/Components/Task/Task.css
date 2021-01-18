@@ -4,7 +4,7 @@
 
 .Task_subtasks {
     background-color: #E5EEF0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px rgba(0, 0, 0, .12), 0px 1px 3px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .2);
 }
 
 .Task-Main {
@@ -59,11 +59,15 @@
     background: #61A0BF;
 }
 
+.Task-Badge_type_conf {
+    background: #DFCF7F;
+}
+
 .Task-Title {
     font-size: 15px;
     line-height: 18px;
     letter-spacing: -0.03em;
-    margin-top: 3px;
+    margin-top: 5px;
     font-weight: normal;
 }
 
@@ -76,25 +80,35 @@
 .Task-Info {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.Task-Users {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 80%;
+    flex-grow: 10;
 }
 
 .Task-Author {
-    flex-basis: 332px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .Task-Assignee {
-    flex-basis: 332px;
     box-sizing: border-box;
-    padding-left: 32px;
+    padding-left: 16px;
+    width: 100%;
 }
 
 .Task-Status {
-    flex-grow: 2;
-    text-align: right;
+    flex-basis: 20%;
     line-height: 30px;
     font-size: 15px;
     padding: 0 16px;
     white-space: nowrap;
+    text-align: right;
 }
 
 .Task-Subtasks {
