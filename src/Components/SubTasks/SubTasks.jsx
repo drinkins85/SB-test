@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { getCountByKey } from '../../helpers/helpers';
+
 import './SubTasks.css'
 
-
-
 export default function SubTasks({ subtasks }) {
-
-    function getTasksCountByStatus(subtasks, status) {
-        return subtasks.reduce((count, subtask) => subtask.status === status ? count + 1 : count, 0);
-    }
-
-    const newSubtasksCount = getTasksCountByStatus(subtasks, 'Новая');
-    const inProgressSubtasksCount = getTasksCountByStatus(subtasks, 'В работе');
-    const closedSubtasksCount = getTasksCountByStatus(subtasks, 'Завершена');
+    const newSubtasksCount = useMemo(
+        () => getCountByKey(subtasks, 'status','Новая'),
+        [subtasks]
+    );
+    const inProgressSubtasksCount = useMemo(
+        () => getCountByKey(subtasks, 'status', 'В работе'),
+        [subtasks]
+    );
+    const closedSubtasksCount = useMemo(
+        () => getCountByKey(subtasks, 'status', 'Завершена'),
+        [subtasks]
+    );
 
     return (
         <div className="SubTasks">

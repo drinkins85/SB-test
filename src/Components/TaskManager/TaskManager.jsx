@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useMemo } from 'react';
 import TaskList from '../TaskList/TaskList';
 import TaskGroupBy from '../TaskGroupBy/TaskGroupBy';
 import TaskFilter from '../TaskFilter/TaskFilter';
@@ -20,12 +20,12 @@ export default function TaskManager({ tasks }) {
 
     const filterOptions = {
         status: {
-            values: [
-                { name: 'Все', value: 'Все' },
-                { name: 'Новая', value: 'Новая' },
-                { name: 'В работе', value: 'В работе' },
-                { name: 'Завершена', value: 'Завершена' },
-            ],
+            values: ['Все', 'Новая', 'В работе', 'Завершена'],
+            //     { name: 'Все', value: 'Все' },
+            //     { name: 'Новая', value: 'Новая' },
+            //     { name: 'В работе', value: 'В работе' },
+            //     { name: 'Завершена', value: 'Завершена' },
+            // ],
             current: filterStatus,
             onChange: setFilterStatus
         },
@@ -49,12 +49,28 @@ export default function TaskManager({ tasks }) {
         }
     };
 
-    const filter = {
-        status: filterStatus,
-        type: filterType,
-        closeType: filterCloseType,
-        title: filterTitle,
+    function getFilterOptions(status, type, closeType, title) {
+        return {
+            status,
+            type,
+            closeType,
+            title,
+        }
     }
+
+    const filter = useMemo(
+        () => getFilterOptions(
+            filterStatus,
+            filterType,
+            filterCloseType,
+            filterTitle
+        ),
+        [
+            filterStatus,
+            filterType,
+            filterCloseType,
+            filterTitle]
+    );
 
     function taskFilter(tasks, filter) {
         const regExp = new RegExp(`^${filterTitle}`, 'i');
@@ -84,7 +100,6 @@ export default function TaskManager({ tasks }) {
         })
     }
 
-    // memo
     function groupBy(tasks, field) {
         tasks.sort((a, b) => {
             let left = a[field];
@@ -105,10 +120,13 @@ export default function TaskManager({ tasks }) {
         return [...tasks];
     }
 
+    const filteredTasks = useMemo(() => taskFilter(tasks, filter), [tasks, filter]);
+    const taskList = useMemo( () => groupBy(filteredTasks, groupByField), [filteredTasks, groupByField]);
+
     return (
         <div className="TaskManager">
             <div className="TaskManager-List">
-                <TaskList tasks={groupBy(taskFilter(tasks, filter), groupByField)} />
+                <TaskList tasks={taskList} />
             </div>
             <div className="TaskManager-Filter">
                 <TaskGroupBy items={groupByValues} selected={groupByField} onChange={setGroupBy} />

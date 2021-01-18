@@ -16,7 +16,7 @@ export default function TaskFilter({ filterOptions }) {
         <div className="TaskFilter">
             <Accordion title="Фильтр">
                 <div className="TaskFilter-Group">По статусу</div>
-                <RadioGroup name="filterStatus" items={status.values} selected={status.current} onSelect={status.onChange} />
+                <RadioGroup groupName="filterStatus" items={status.values} selected={status.current} onSelect={status.onChange} />
                 <div className="TaskFilter-Group">Как завершена задача</div>
                 <TaskFilterSelect
                     options={closeType.values}

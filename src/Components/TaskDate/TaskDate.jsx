@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { getWeeksCount } from '../../helpers/helpers';
+
 import './TaskDate.css';
 
 export default function TaskDate({ dateStart, dateFinish, localeOptions = {} }) {
@@ -7,12 +9,8 @@ export default function TaskDate({ dateStart, dateFinish, localeOptions = {} }) 
         day: 'numeric',
     };
 
-    //memo
-    function getWeeksCount() {
-        return Math.round((dateFinish - dateStart) / (7 * 24 * 60 * 60 * 1000));
-    }
-
     const deadlineFailed = dateFinish < new Date();
+    const weeksCount = useMemo(() => getWeeksCount(dateStart, dateFinish), [dateFinish, dateStart])
 
     return (
         <div className="TaskDate">
@@ -23,7 +21,7 @@ export default function TaskDate({ dateStart, dateFinish, localeOptions = {} }) 
                 {dateFinish.toLocaleString("ru", { ...defaultOptions, ...localeOptions })}
             </div>
             <div className={`TaskDate-Weeks ${deadlineFailed ? 'TaskDate__Weeks_failed' : ''}`}>
-                {getWeeksCount()}
+                {weeksCount}
             </div>
         </div>
     )
