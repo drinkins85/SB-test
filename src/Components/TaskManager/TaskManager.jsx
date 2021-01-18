@@ -10,6 +10,7 @@ export default function TaskManager({ tasks }) {
     const [filterStatus, setFilterStatus] = useState('Все');
     const [filterType, setFilterType] = useState('');
     const [filterCloseType, setFilterCloseType] = useState('');
+    const [filterTitle, setFilterTitle] = useState('');
 
     const groupByValues = [
         { name: 'Типу', value: 'type' },
@@ -41,29 +42,42 @@ export default function TaskManager({ tasks }) {
             values: ['Вручную', 'Автоматически'],
             current: filterCloseType,
             onChange: setFilterCloseType
+        },
+        title: {
+            value: filterTitle,
+            onChange: setFilterTitle
         }
     };
 
     const filter = {
-        status: filterStatus === 'Все' ? undefined : filterStatus,
-        type: filterType === '' ? undefined : filterType,
-        closeType: filterCloseType === '' ? undefined : filterCloseType,
+        status: filterStatus,
+        type: filterType,
+        closeType: filterCloseType,
+        title: filterTitle,
     }
 
     function taskFilter(tasks, filter) {
+        const regExp = new RegExp(`^${filterTitle}`, 'i');
+
         return tasks.filter((task) => {
             for (let key in filter) {
                 if (!filter.hasOwnProperty(key)) {
                     continue;
                 }
 
-                if (typeof filter[key] === "undefined") {
+                if (filter[key] === '' || filter[key] === 'Все') {
+                    continue;
+                }
+
+                if (key === 'title' && regExp.test(task.title)) {
                     continue;
                 }
 
                 if (task[key] !== filter[key]) {
                     return false;
                 }
+
+
             }
 
             return true;
