@@ -1,7 +1,6 @@
 .TaskManager {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 .TaskManager-List {
@@ -12,7 +11,7 @@
     flex-basis: 300px;
     padding-top: 30px;
     padding-right: 30px;
-    padding-left: 40px;
+    padding-left: 60px;
 }
 
 
