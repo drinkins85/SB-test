@@ -39,7 +39,7 @@ const taskList = [
     description: '',
     author: { name: 'Зарембо-Годзяцкий' },
     assignee: { name: 'Зарембо-Годзяцкий' },
-    date: new Date(2021, 0, 1),
+    date: new Date(2021, 0, 5),
     deadline: new Date(2021, 2, 2),
     status: 'Новая'
   },
@@ -50,7 +50,7 @@ const taskList = [
     description: '',
     author: { name: 'Иванов Иван' },
     assignee: { name: 'Петров Петр' },
-    date: new Date(2021, 0, 1),
+    date: new Date(2021, 0, 16),
     deadline: new Date(2021, 2, 2),
     status: 'Завершена',
     closeType: 'Автоматически'
@@ -62,8 +62,8 @@ const taskList = [
     description: '',
     author: { name: 'Константинов Константин' },
     assignee: { name: 'Петров Петр' },
-    date: new Date(2021, 0, 1),
-    deadline: new Date(2021, 2, 2),
+    date: new Date(2020, 11, 22),
+    deadline: new Date(2021, 0, 23),
     status: 'В работе'
   },
   {
@@ -84,8 +84,8 @@ const taskList = [
     description: '',
     author: { name: 'Иванов Иван' },
     assignee: { name: 'Петров Петр' },
-    date: new Date(2020, 0, 1),
-    deadline: new Date(2020, 2, 2),
+    date: new Date(2020, 10, 2),
+    deadline: new Date(2020, 11, 25),
     status: 'Завершена',
     closeType: 'Вручную'
   },

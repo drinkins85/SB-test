@@ -1,10 +1,11 @@
 import React from 'react';
 import Accordion from '../Accordion/Accordion';
 import RadioGroup from '../RadioGroup/RadioGroup';
+import { shallowEqual } from '../../helpers/helpers';
 
 import './TaskGroupBy.css';
 
-export default function TaskGroupBy({ items, selected, onChange}) {
+function TaskGroupBy({ items, selected, onChange}) {
     return (
         <div className="TaskGroupBy">
             <Accordion title="Группировка по">
@@ -13,3 +14,9 @@ export default function TaskGroupBy({ items, selected, onChange}) {
         </div>
     )
 }
+
+function propsAreEqual(next, prev) {
+    return shallowEqual(prev, next);
+}
+
+export default React.memo(TaskGroupBy, propsAreEqual)

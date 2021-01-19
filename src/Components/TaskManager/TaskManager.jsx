@@ -5,71 +5,74 @@ import TaskFilter from '../TaskFilter/TaskFilter';
 
 import './TaskManager.css';
 
+const groupByItems = [
+    { name: 'Типу', value: 'type' },
+    { name: 'Автору', value: 'author' },
+    { name: 'Статусу', value: 'status' },
+];
+
+const filterStatusValues = ['Все', 'Новая', 'В работе', 'Завершена'];
+
+const filterTypeValues = [
+    { name: 'Совещание отдела', value: 'Совещание отдела' },
+    { name: 'Встреча', value: 'Встреча' },
+    { name: 'Конференция', value: 'Конференция' },
+];
+
+const filterCloseTypeValues = ['Вручную', 'Автоматически'];
+
 export default function TaskManager({ tasks }) {
     const [groupByField, setGroupBy] = useState('status');
     const [filterStatus, setFilterStatus] = useState('Все');
     const [filterType, setFilterType] = useState('');
     const [filterCloseType, setFilterCloseType] = useState('');
     const [filterTitle, setFilterTitle] = useState('');
+    const [filterDateFrom, setFilterDateFrom] = useState(null);
+    const [filterDateTo, setFilterDateTo] = useState(null);
 
-    const groupByValues = [
-        { name: 'Типу', value: 'type' },
-        { name: 'Автору', value: 'author' },
-        { name: 'Статусу', value: 'status' },
-    ];
+    function getFilterFields(status, type, closeType, title, dateFrom, dateTo) {
+        const options = {};
 
-    const filterOptions = {
-        status: {
-            values: ['Все', 'Новая', 'В работе', 'Завершена'],
-            //     { name: 'Все', value: 'Все' },
-            //     { name: 'Новая', value: 'Новая' },
-            //     { name: 'В работе', value: 'В работе' },
-            //     { name: 'Завершена', value: 'Завершена' },
-            // ],
-            current: filterStatus,
-            onChange: setFilterStatus
-        },
-        type: {
-            values: [
-                { name: 'Совещание отдела', value: 'Совещание отдела' },
-                { name: 'Встреча', value: 'Встреча' },
-                { name: 'Конференция', value: 'Конференция' },
-            ],
-            current: filterType,
-            onChange: setFilterType
-        },
-        closeType: {
-            values: ['Вручную', 'Автоматически'],
-            current: filterCloseType,
-            onChange: setFilterCloseType
-        },
-        title: {
-            value: filterTitle,
-            onChange: setFilterTitle
+        if (status !== 'Все') {
+            options['status'] = status;
         }
-    };
 
-    function getFilterOptions(status, type, closeType, title) {
-        return {
-            status,
-            type,
-            closeType,
-            title,
+        if (type) {
+            options['type'] = type;
         }
+
+        if (closeType) {
+            options['closeType'] = closeType;
+        }
+
+        if(title) {
+            options['title'] = title;
+        }
+
+        if (dateFrom && dateTo) {
+            options['date'] = { from: dateFrom, to: dateTo }
+        }
+
+        return options;
     }
 
     const filter = useMemo(
-        () => getFilterOptions(
+        () => getFilterFields(
             filterStatus,
             filterType,
             filterCloseType,
-            filterTitle
+            filterTitle,
+            filterDateFrom,
+            filterDateTo
         ),
         [
             filterStatus,
             filterType,
             filterCloseType,
-            filterTitle]
+            filterTitle,
+            filterDateFrom,
+            filterDateTo,
+        ]
     );
 
     function taskFilter(tasks, filter) {
@@ -81,19 +84,23 @@ export default function TaskManager({ tasks }) {
                     continue;
                 }
 
-                if (filter[key] === '' || filter[key] === 'Все') {
+                if (key === 'title' && regExp.test(task.title)) {
                     continue;
                 }
 
-                if (key === 'title' && regExp.test(task.title)) {
-                    continue;
+                if (key === 'date') {
+                    if (task.deadline >= filter.date.from && task.deadline <= filter.date.to ||
+                    task.date <= filter.date.to && task.date >= filter.date.from ||
+                    task.date <= filter.date.from && task.deadline >= filter.date.to ||
+                    task.date >= filter.date.from && task.deadline <= filter.date.to
+                    ) {
+                        continue;
+                    }
                 }
 
                 if (task[key] !== filter[key]) {
                     return false;
                 }
-
-
             }
 
             return true;
@@ -129,8 +136,38 @@ export default function TaskManager({ tasks }) {
                 <TaskList tasks={taskList} />
             </div>
             <div className="TaskManager-Filter">
-                <TaskGroupBy items={groupByValues} selected={groupByField} onChange={setGroupBy} />
-                <TaskFilter filterOptions={filterOptions} />
+                <TaskGroupBy
+                    items={groupByItems}
+                    selected={groupByField}
+                    onChange={setGroupBy}
+                />
+                <TaskFilter
+                    status={{
+                        values: filterStatusValues,
+                        current: filterStatus,
+                        onChange: setFilterStatus
+                    }}
+                    type={{
+                        values: filterTypeValues,
+                        current: filterType,
+                        onChange: setFilterType
+                    }}
+                    closeType={{
+                        values: filterCloseTypeValues,
+                        current: filterCloseType,
+                        onChange: setFilterCloseType,
+                    }}
+                    title={{
+                        value: filterTitle,
+                        onChange: setFilterTitle
+                    }}
+                    date={{
+                        from: filterDateFrom,
+                        to: filterDateTo,
+                        onDateFromChange: setFilterDateFrom,
+                        onDateToChange: setFilterDateTo,
+                    }}
+                />
             </div>
         </div>
     );
